@@ -312,8 +312,8 @@ def __run__(inputArgs=[]):
                   result.append("\n")
                 return "".join(result)
         parser=optparse.OptionParser(prog='pyqsub',description=description+argparsedescription,formatter_class=IndentedHelpFormatterWithNL)
-        parser.add_option('-j','--job_string',type=str,help="job_string to submit to cluster",dest='job_string',default=False)
-        parser.add_option('-m','--module_name',type=str,help="module_name to submit to cluster",dest='module_name',default=False)
+        parser.add_option('-j','--job_string','--jobstring',type=str,help="job_string to submit to cluster",dest='job_string',default=False)
+        parser.add_option('-m','--module_name','--modulename',type=str,help="module_name to submit to cluster",dest='module_name',default=False)
         group=optparse.OptionGroup(parser,'Cluster',description="\nCommands for submitting to a cluster environment using qsub/PBS")
         group=parser_group(module_name='pyqsub',group=group) 
         parser.add_option_group(group)    
@@ -326,8 +326,8 @@ def __run__(inputArgs=[]):
             parser.error("job string or module name required")
         options['unknown']=' '.join(args)
     options['qsub']=True
-    if options['module_name']:
-        options['qsub_N']=options['module_name']
+    if not options['module_name']:
+        options['module_name']=options['qsub_N']
     submit(options,{'unknown':''},options['qsub_N'],options['job_string'])
 if __name__=="__main__":
     __run__()
