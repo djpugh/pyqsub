@@ -144,7 +144,7 @@ def submit(options,options_map={},module_name=False,job_string=False,list_delimi
     print '\n===============\nSubmitted job: '+out
     os.rename(options['qsub_N']+'_temp.pbs',options['qsub_N']+'.p'+out.rstrip('\n').split('.')[0])
     return 0
-def parser_group(module_name,group,default_nodes=1,default_ppn=8,default_pmem=1,default_walltime="24:00:00",default_queue="auto",*kwargs):
+def parser_group(module_name,group,default_nodes=1,default_ppn=8,default_pmem=1,default_walltime="24:00:00",default_queue="auto",default_email=False,default_email_options="bae",*kwargs):
     """Adds parser group for qsub arguments
 
     Args
@@ -165,8 +165,8 @@ def parser_group(module_name,group,default_nodes=1,default_ppn=8,default_pmem=1,
         group.add_argument("--nodes",default=default_nodes,help="Set number of nodes to use for job submission. [default="+str(default_nodes)+"]",type=int,dest="qsub_nodes")
         group.add_argument("--ppn",default=default_ppn,help="Set ppn to use for job submission. [default="+str(default_ppn)+"]",type=int,dest="qsub_ppn")
         group.add_argument("--pmem",default=default_pmem,help="Set pmem (Gb) to use for job submission.  [default="+str(default_pmem)+"Gb]",type=float,dest="qsub_pmem")
-        group.add_argument("--email",default=False,help="Set user email address.",type=str,dest="qsub_M")
-        group.add_argument("--emailoptions",default="bae",help="Set PBS -m mail options. Requires email address using -M. [default=bae]",type=str,dest="qsub_m")
+        group.add_argument("--email",default=default_email,help="Set user email address.",type=str,dest="qsub_M")
+        group.add_argument("--emailoptions",default=default_email_options,help="Set PBS -m mail options. Requires email address using -M. [default=bae]",type=str,dest="qsub_m")
         group.add_argument("--name",default=module_name,help="Set PBS -N job name options. [default="+module_name+"]",type=str,dest="qsub_N")
         group.add_argument("--walltime",default=default_walltime,help="Set PBS maximum wall time. Needs to be of the form HH:MM:SS. [default="+default_walltime+"]",type=str,dest="qsub_walltime")
         group.add_argument("--queue",default=default_queue,help="Set PBS -q Queue options. [default="+default_queue+"]",type=str,dest="qsub_q") 
@@ -176,8 +176,8 @@ def parser_group(module_name,group,default_nodes=1,default_ppn=8,default_pmem=1,
         group.add_option("--nodes",default=default_nodes,help="Set number of nodes to use for job submission. [default="+str(default_nodes)+"]",type=int,dest="qsub_nodes")
         group.add_option("--ppn",default=default_ppn,help="Set ppn to use for job submission. [default="+str(default_ppn)+"]",type=int,dest="qsub_ppn")
         group.add_option("--pmem",default=default_pmem,help="Set pmem (Gb) to use for job submission.  [default="+str(default_pmem)+"Gb]",type=float,dest="qsub_pmem")
-        group.add_option("--email",default=False,help="Set user email address.",type=str,dest="qsub_M")
-        group.add_option("--emailoptions",default="bae",help="Set PBS -m mail options. Requires email address using -M. [default=bae]",type=str,dest="qsub_m")
+        group.add_option("--email",default=default_email,help="Set user email address.",type=str,dest="qsub_M")
+        group.add_option("--emailoptions",default=default_email_options,help="Set PBS -m mail options. Requires email address using -M. [default=bae]",type=str,dest="qsub_m")
         group.add_option("--name",default=module_name,help="Set PBS -N job name options. [default="+module_name+"]",type=str,dest="qsub_N")
         group.add_option("--walltime",default=default_walltime,help="Set PBS maximum wall time. Needs to be of the form HH:MM:SS. [default="+default_walltime+"]",type=str,dest="qsub_walltime")
         group.add_option("--queue",default=default_queue,help="Set PBS -q Queue options. [default="+default_queue+"]",type=str,dest="qsub_q")   
