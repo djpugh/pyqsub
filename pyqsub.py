@@ -129,7 +129,7 @@ def submit(options,options_map={},module_name=False,job_string=False,list_delimi
         qsub_script+='#PBS -l pmem='+str(int(options['qsub_pmem']))+'Gb\n'
     qsub_script+='#PBS -q '+options['qsub_q']+'\n'
     if options['qsub_M']:
-        qsub_script+='#PBS -M '+options['qsub_M']+'\n#PBS -m '+options['qsub_m']+'\n'
+        qsub_script+='#PBS -M '+options['qsub_M']+'\n#PBS -m '+options['qsub_m']+'\ncd $HOME\nsleep 10\n'
     if job_string:
         qsub_script+=job_string
     else:
