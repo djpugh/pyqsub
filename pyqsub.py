@@ -124,7 +124,12 @@ def submit(options,options_map={},module_name=False,job_string=False,list_delimi
         raise UserWarning("job_string not specified and options_map length is 0, no option flags will be appended to the pbs script ")
     optstr=make_optstr(options,options_map,list_delimiter)
     qsub_script="#!/bin/bash\n##"+module_name.split('.')[0]+" qsub script\n#PBS -S /bin/sh\n#PBS -N "+str(options['qsub_N'])+"\n#PBS -l walltime="+str(options['qsub_walltime'])+'\n'
-    qsub_script+='#PBS -V\n#PBS -l nodes='+str(options['qsub_nodes'])+':ppn='+str(options['qsub_ppn'])+'\n'
+    qsub_script+='#PBS -V\n'
+    qsub_script+='#PBS -l nodes='+str(options['qsub_nodes'])+':ppn='+str(options['qsub_ppn'])
+    if options['qsub_blade_properties']:
+        qsub_script+=':'+options['qsub_blade_properties']+'\n'
+    else:
+        qsub_script+='\n'
     if options['qsub_pmem']:
         qsub_script+='#PBS -l pmem='+str(int(options['qsub_pmem']))+'Gb\n'
     qsub_script+='#PBS -q '+options['qsub_q']+'\n'
@@ -145,7 +150,7 @@ def submit(options,options_map={},module_name=False,job_string=False,list_delimi
     print '\n===============\nSubmitted job: '+out
     os.rename(options['qsub_N']+'_temp.pbs',options['qsub_N']+'.p'+out.rstrip('\n').split('.')[0])
     return 0
-def parser_group(module_name,group,default_nodes=1,default_ppn=8,default_pmem=1,default_walltime="24:00:00",default_queue="auto",default_email=False,default_email_options="bae",*kwargs):
+def parser_group(module_name,group,default_nodes=1,default_ppn=8,default_pmem=1,default_walltime="24:00:00",default_queue="auto",default_email=False,default_email_options="bae",default_properties=False,*kwargs):
     """Adds parser group for qsub arguments
 
     Args
@@ -171,6 +176,8 @@ def parser_group(module_name,group,default_nodes=1,default_ppn=8,default_pmem=1,
         group.add_argument("--name",default=module_name,help="Set PBS -N job name options. [default="+module_name+"]",type=str,dest="qsub_N")
         group.add_argument("--walltime",default=default_walltime,help="Set PBS maximum wall time. Needs to be of the form HH:MM:SS. [default="+default_walltime+"]",type=str,dest="qsub_walltime")
         group.add_argument("--queue",default=default_queue,help="Set PBS -q Queue options. [default="+default_queue+"]",type=str,dest="qsub_q") 
+        group.add_argument("--bladeproperties",default=default_email_options,help="Set desired PBS blade properties. [default="+str(default_properties)+"]",type=str,dest="qsub_blade_properties")
+        
         return group   
     else:
         group.add_option("-q","--qsub","--pbs",default=False,help="Flag to set "+module_name+" to submit to cluster",action='store_true',dest="qsub")
@@ -182,6 +189,7 @@ def parser_group(module_name,group,default_nodes=1,default_ppn=8,default_pmem=1,
         group.add_option("--name",default=module_name,help="Set PBS -N job name options. [default="+module_name+"]",type=str,dest="qsub_N")
         group.add_option("--walltime",default=default_walltime,help="Set PBS maximum wall time. Needs to be of the form HH:MM:SS. [default="+default_walltime+"]",type=str,dest="qsub_walltime")
         group.add_option("--queue",default=default_queue,help="Set PBS -q Queue options. [default="+default_queue+"]",type=str,dest="qsub_q")   
+        group.add_option("--bladeproperties",default=default_email_options,help="Set desired PBS blade properties. [default="+str(default_properties)+"]",type=str,dest="qsub_blade_properties")
         return group
 def __run__(inputArgs=[]):
     if ARGPARSE:
