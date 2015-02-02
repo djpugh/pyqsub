@@ -161,6 +161,9 @@ def parser_group(module_name,group,default_nodes=1,default_ppn=8,default_pmem=1,
         default_pmem: float physical memory size in Gb for qsub script (#PBS -l pmem) [default=1]
         default_walltime: str default walltime string for qsub (#PBS -l walltime) [default=24:00:00]
         default_queue: str default queue to use for qsub (#PBS -q queue) [default=auto]
+        default_email: str default email to use for qsub (#PBS -M email) [default=False]
+        default_email_options: str default email_options to use for qsub (#PBS -m opts) [default=bae]
+        default_properties: str default blade properties for submission qsub (#PBS -l nodes=nodes:ppn=ppn:properties) [default=False]
 
     Returns
         group: argparse or optparse argument group
