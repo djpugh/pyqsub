@@ -179,7 +179,7 @@ def parser_group(module_name,group,default_nodes=1,default_ppn=8,default_pmem=1,
         group.add_argument("--name",default=module_name,help="Set PBS -N job name options. [default="+module_name+"]",type=str,dest="qsub_N")
         group.add_argument("--walltime",default=default_walltime,help="Set PBS maximum wall time. Needs to be of the form HH:MM:SS. [default="+default_walltime+"]",type=str,dest="qsub_walltime")
         group.add_argument("--queue",default=default_queue,help="Set PBS -q Queue options. [default="+default_queue+"]",type=str,dest="qsub_q") 
-        group.add_argument("--bladeproperties",default=default_email_options,help="Set desired PBS blade properties. [default="+str(default_properties)+"]",type=str,dest="qsub_blade_properties")
+        group.add_argument("--bladeproperties",default=default_properties,help="Set desired PBS blade properties. [default="+str(default_properties)+"]",type=str,dest="qsub_blade_properties")
         
         return group   
     else:
@@ -192,7 +192,7 @@ def parser_group(module_name,group,default_nodes=1,default_ppn=8,default_pmem=1,
         group.add_option("--name",default=module_name,help="Set PBS -N job name options. [default="+module_name+"]",type=str,dest="qsub_N")
         group.add_option("--walltime",default=default_walltime,help="Set PBS maximum wall time. Needs to be of the form HH:MM:SS. [default="+default_walltime+"]",type=str,dest="qsub_walltime")
         group.add_option("--queue",default=default_queue,help="Set PBS -q Queue options. [default="+default_queue+"]",type=str,dest="qsub_q")   
-        group.add_option("--bladeproperties",default=default_email_options,help="Set desired PBS blade properties. [default="+str(default_properties)+"]",type=str,dest="qsub_blade_properties")
+        group.add_option("--bladeproperties",default=default_properties,help="Set desired PBS blade properties. [default="+str(default_properties)+"]",type=str,dest="qsub_blade_properties")
         return group
 def __run__(inputArgs=[]):
     if ARGPARSE:
