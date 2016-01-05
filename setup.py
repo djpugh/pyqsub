@@ -20,7 +20,7 @@ def setup_package(install=False,build=False,clean=False):
       author='David Pugh',
       author_email='djpugh@gmail.com',
       url='https://github.com/djpugh/pyqsub',
-      download_url='https://github.com/djpugh/pyqsub/tarball/1.0.0',
+      download_url='https://github.com/djpugh/pyqsub/tarball/v1.0.0',
       entry_points={'console_scripts': ['pyqsub = pyqsub.__init__:__run__']},
       keywords=['cluster','torque','pbs','qsub'],
       classifiers=[])
