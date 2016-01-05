@@ -70,6 +70,21 @@ def setup_package(install=False,build=False,clean=False):
             shutil.rmtree('__pycache__/')
         except:
             pass
+    elif 'pypi_upload' in sys.argv:
+        argv=[sys.executable,"setup.py","sdist","upload", "-r", "pypi"]
+        subprocess.call(argv)
+        clean_package()
+        argv=[sys.executable,"setup.py","sdist","--format=gztar","upload", "-r", "pypi"]
+        subprocess.call(argv)
+        clean_package()
+        argv=[sys.executable,"setup.py","bdist_wininst","upload", "-r", "pypi"]
+        subprocess.call(argv)      
+        clean_package()
+        argv=[sys.executable,"setup.py","bdist_wheel","upload", "-r", "pypi"]
+        subprocess.call(argv)      
+        clean_package()
+        argv=[sys.executable,"setup.py","bdist_msi","upload", "-r", "pypi"]
+        subprocess.call(argv)
     else:
         setup(**kwargs)
 def clean_package():
