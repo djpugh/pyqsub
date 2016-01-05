@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """pyqsub
 =================================
-Python module for running jobs on a cluster by David J Pugh (Bullard Laboratories, Department of Earth Sciences, University of Cambridge)
+Python module for running jobs on a cluster by David J Pugh
 
 This module allows any python module to be easily submitted to run on a cluster or any other job. It provides basic python wrappers for qsub and a parser group for argparse or optparse.
 
@@ -58,8 +58,22 @@ In this case, the options argument needs to contain the qsub options and the opt
 
 This aspect of pyqsub can be called from the command line, try pyqsub -h for help.
 
+-------------------------------------------
+
+Copyright (c) 2015 David J Pugh
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), 
+to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS 
+IN THE SOFTWARE.
+
 """
-__version__='1.0.0'
 import os,stat,subprocess,optparse,textwrap,glob
 try:
     import argparse
