@@ -66,6 +66,10 @@ def setup_package(install=False,build=False,clean=False):
                 shutil.mkdir('pyqsub.egg-info/')
             except:
                 pass
+        try:
+            shutil.rmtree('__pycache__/')
+        except:
+            pass
     else:
         setup(**kwargs)
 def clean_package():

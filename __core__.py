@@ -80,12 +80,12 @@ def submit(options,options_map={},module_name=False,job_string=False,list_delimi
         if options.get('qsub_mpi',False): #MPI option if in options string
             qsub_script+='mpirun -n '+str(options.get('qsub_np',options['qsub_nodes']*options['qsub_ppn']))+' '
         qsub_script+='python -c "import '+module_name.split('.')[0]+'; '+module_name.split('.')[0]+'.__run__()" '+optstr+'\n'
-    print 'Script:\n===============\n\n'+qsub_script
+    print ('Script:\n===============\n\n'+qsub_script)
     open(options['qsub_N']+'_temp.pbs','w').write(qsub_script)
     os.chmod(options['qsub_N']+'_temp.pbs', stat.S_IRWXO| stat.S_IRWXG|stat.S_IRWXU)
     process=subprocess.Popen(["qsub",options['qsub_N']+"_temp.pbs"],stdout=subprocess.PIPE)
     out,err=process.communicate()
-    print '\n===============\nSubmitted job: '+out
+    print ('\n===============\nSubmitted job: '+out)
     os.rename(options['qsub_N']+'_temp.pbs',options['qsub_N']+'.p'+out.rstrip('\n').split('.')[0])
     return 0
 def parser_group(module_name,group,default_nodes=1,default_ppn=8,default_pmem=1,default_walltime="24:00:00",default_queue="auto",default_email=False,default_email_options="bae",default_properties=False,default_feature=False,*kwargs):
