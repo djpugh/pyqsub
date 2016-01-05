@@ -31,7 +31,7 @@ def setup_package(install=False,build=False,clean=False):
                 os.remove(fname)
             except:
                 pass
-        print '------\nBUILDING DISTRIBUTIONS\n-----\n'
+        print ('------\nBUILDING DISTRIBUTIONS\n-----\n')
         clean_package()
         argv=[sys.executable,"setup.py","sdist"]
         subprocess.call(argv)
@@ -95,5 +95,3 @@ def clean_package():
 
 if __name__=="__main__":
     setup_package()
-    sys.stdout=sys.__stdout__
-    sys.stderr=sys.__stderr__ 
