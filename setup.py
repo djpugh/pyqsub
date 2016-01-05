@@ -9,7 +9,7 @@ except:
   except:
     _SETUPTOOLS=False
 import sys,shutil,os,datetime,subprocess,glob
-__version__='1.0.0'
+__version__='1.0.1'
 def setup_package(install=False,build=False,clean=False):
     kwargs=dict(
       name='pyqsub',
@@ -20,7 +20,7 @@ def setup_package(install=False,build=False,clean=False):
       author='David Pugh',
       author_email='djpugh@gmail.com',
       url='https://github.com/djpugh/pyqsub',
-      download_url='https://github.com/djpugh/pyqsub/tarball/v1.0.0',
+      download_url='https://github.com/djpugh/pyqsub/tarball/v1.0.1',
       entry_points={'console_scripts': ['pyqsub = pyqsub.__init__:__run__']},
       keywords=['cluster','torque','pbs','qsub'],
       classifiers=[])
