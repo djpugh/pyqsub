@@ -107,7 +107,7 @@ def parser_group(module_name,group,default_nodes=1,default_ppn=8,default_pmem=1,
         group: argparse or optparse argument group
 
     """ 
-    if ARGPARSE:
+    if ARGPARSE and isinstance(group,argparse._ArgumentGroup):
         group.add_argument("-q","--qsub","--pbs",default=False,help="Flag to set "+module_name+" to submit to cluster",action='store_true',dest="qsub")
         group.add_argument("--nodes",default=default_nodes,help="Set number of nodes to use for job submission. [default="+str(default_nodes)+"]",type=int,dest="qsub_nodes")
         group.add_argument("--ppn",default=default_ppn,help="Set ppn to use for job submission. [default="+str(default_ppn)+"]",type=int,dest="qsub_ppn")
