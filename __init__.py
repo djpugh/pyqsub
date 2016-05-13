@@ -73,6 +73,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OU
 IN THE SOFTWARE.
 
 """
-from __core__ import __run__,parser_group
+from __core__ import __run__,parser_group,submit
 if __name__=="__main__":
     __run__()
